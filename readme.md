@@ -12,9 +12,12 @@ Create the composer.json file as follows:
 ```
 {
     "require": {
-        "duythien/cashier": "*"
+        "duythien/cashier": "^v1"
     }
 }
+```
+
+
 ## Test Setup
 You will need to set the following details locally and on your Stripe account in order to test:
 
