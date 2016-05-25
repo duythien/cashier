@@ -1,0 +1,28 @@
+# Codeception Test Suite Configuration
+
+# suite for acceptance tests.
+# perform tests in browser using the WebDriver or PhpBrowser.
+# If you need both WebDriver and PHPBrowser tests - create a separate suite.
+
+class_name: AcceptanceTester
+modules:
+    enabled:
+        - Filesystem
+        - Phalcon2
+        - PhpBrowser
+        - Db
+    config:
+        Phalcon2:
+            bootstrap: 'tests/bootstrap.php'
+            cleanup: true
+            savepoints: true
+        PhpBrowser:
+            url: 'http://localhost:8000'
+            curl:
+              CURLOPT_RETURNTRANSFER: true
+
+        # WebDriver:
+        #  url: 'http://localhost/'
+        #  browser: phantomjs
+        #  capabilities:
+        #      webStorageEnabled: true

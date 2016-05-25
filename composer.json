@@ -1,0 +1,32 @@
+{
+    "name": "phalcon/cashier",
+    "description": "Phalcon Cashier provides an expressive, fluent interface to Stripe's subscription billing services.",
+    "keywords": ["phalcon", "stripe", "billing"],
+    "license": "GNU",
+    "authors": [
+        {
+            "name": "Thien Tran",
+            "email": "fcduytienl@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "dompdf/dompdf": "^0.6.1",
+        "nesbot/carbon": "~1.0",
+        "stripe/stripe-php": "~3.0"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "1.*",
+        "codeception/codeception": "2.1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Phalcon\\Cashier\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "dev"
+        }
+    }
+}

@@ -1,0 +1,11 @@
+# Codeception Test Suite Configuration
+
+# suite for unit (internal) tests.
+class_name: UnitTester
+modules:
+    enabled: [Asserts, Phalcon2]
+    config:
+        Phalcon2:
+            bootstrap: tests/bootstrap.php
+            cleanup: false
+            savepoints: true
