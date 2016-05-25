@@ -1,2 +1,0 @@
-tests/unit/CashierTest.php:testSubscriptionsCanBeCreated
-tests/unit/CashierTest.php:test_creating_subscription_with_coupons
