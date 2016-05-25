@@ -1,5 +1,6 @@
-# Phalcon Cashier
+## Build Status and Join chats us:
 
+[![Build Status](https://travis-ci.org/duythien/cashier.svg?branch=master)](https://travis-ci.org/duythien/cashier) [![Slack](https://img.shields.io/badge/slack-join%20chat%20%E2%86%92-brightgreen.svg?style=flat-square)](http://chat.phalcontip.com)
 
 ## Introduction
 
@@ -37,4 +38,4 @@ Thank you for considering contributing to the Cashier. You can read the contribu
 
 ## License
 
-Laravel Cashier is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/GNU)
+Phalcon Cashier is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
