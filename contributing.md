@@ -1,6 +1,6 @@
 # Cashier Contribution Guide
 
-This page contains guidelines for contributing to the Laravel Cashier. Please review these guidelines before submitting any pull requests to Cashier.
+This page contains guidelines for contributing to the Phalcon Cashier. Please review these guidelines before submitting any pull requests to Cashier.
 
 ## Pull Requests
 
@@ -10,7 +10,7 @@ Pull requests for bugs may be sent without creating any proposal issue. If you b
 
 ### Feature Requests
 
-If you have an idea for a new feature you would like to see added to Laravel, you may create an issue on GitHub with `[Request]` in the title. The feature request will then be reviewed by @taylorotwell.
+If you have an idea for a new feature you would like to see added to Phalcon, you may create an issue on GitHub with `[Request]` in the title. The feature request will then be reviewed by @duythien.
 
 ## Coding Guidelines
 

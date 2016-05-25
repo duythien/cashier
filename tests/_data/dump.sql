@@ -66,7 +66,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `uuid`, `username`, `firstname`, `lastname`, `email`, `password`, `register_hash`, `passwd_forgot_hash`, `status`, `card_last_four`, `card_brand`, `stripe_id`, `trial_ends_at`, `created`) VALUES
-(1, '11--222', 'phanbook', 'Thien', 'Tran', 'hello@phanbook.com', '$2a$12$wCpQq8iqKlKhFdwh7SgKVeEmjkuriZYje20RKq5/lN3HuNKAvb.i2', NULL, NULL, '1', '4242', 'Visa', 'cus_8W80pYyQVGENcw', NULL, 0),
+(1, '11--222', 'phanbook', 'Thien', 'Tran', 'hello@phanbook.com', '$2a$12$wCpQq8iqKlKhFdwh7SgKVeEmjkuriZYje20RKq5/lN3HuNKAvb.i2', NULL, NULL, '1', '4242', 'Visa', NULL, NULL, 0),
 (2, '4cea558b-6455-421a-98a3-5705182157e4', 'fcduythien@gmail.com', 'ddj', 'fc', 'fcduythien@gmail.com', '$2a$12$taYvfYIFExYHpigMztO9Uup4/JBNnA5iUr1Pq4mcZMMcyd2vbi6Mq', '0e31511b12f342fcac58547e723a8282', NULL, '3', NULL, NULL, NULL, NULL, 0),
 (6, 'eb4ebed7-a57c-4bf6-9fbe-ef7da89fd2c0', 'admin', 'Thien', 'Tran', 'avc@gmail.com', '$2a$12$hRrz3gNegnQ6g4qHss5IiekdBBDAgaCagQtax3dmqW7k11.L.BHpa', '1d024e0fd52710257477a600cf73dc26', NULL, '1', NULL, NULL, NULL, NULL, 0),
 (7, '2bc205a2-b1b6-4483-9351-c7944532a820', 'google', 'Thien', 'Tran', 'fcduythien@gmail.com', '$2y$12$Fcz35XriokNf88iswhVd0.hbhv4nwVrYENnTNsJGzzVxOdZ1h3ILm', '21d0857e552b65c8acb68e91d5be5d88', NULL, '3', NULL, NULL, NULL, NULL, 0);
