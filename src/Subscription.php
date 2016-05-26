@@ -232,7 +232,7 @@ class Subscription extends Model
         // to maintain the current trial state, whether that is "active" or to run
         // the swap out with the exact number of days left on this current plan.
         if ($this->onTrial()) {
-            $subscription->trial_end = $this->trial_ends_at->getTimestamp();
+            $subscription->trial_end = strtotime($this->trial_ends_at);
         } else {
             $subscription->trial_end = 'now';
         }

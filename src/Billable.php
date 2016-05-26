@@ -127,7 +127,9 @@ trait Billable
      */
     public function onGenericTrial()
     {
-        return $this->trial_ends_at && Carbon::now()->lt($this->trial_ends_at);
+        $trialEndsAt = new \DateTime($this->trial_ends_at);
+
+        return $this->trial_ends_at && Carbon::now()->lt(Carbon::instance($trialEndsAt));
     }
 
     /**
@@ -185,11 +187,7 @@ trait Billable
         );
         return $this->getRelated('subscriptions');
     }
-    public function initialize()
-    {
 
-        //$this->hasMany('id', Subscription::class, 'user_id', ['alias' => 'subscriptions']);
-    }
     /**
      * Invoice the billable entity outside of regular billing cycle.
      *
