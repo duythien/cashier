@@ -7,12 +7,12 @@ use Carbon\Carbon;
 use Phalcon\Mvc\View;
 use Stripe\Invoice as StripeInvoice;
 use Phalcon\Http\Response;
+use Phalcon\Di\FactoryDefault;
 
 class Invoice
 {
     /**
      * The user instance.
-     *
      */
     protected $user;
 
@@ -26,8 +26,8 @@ class Invoice
     /**
      * Create a new invoice instance.
      *
-     * @param  Model  $user
-     * @param  \Stripe\Invoice  $invoice
+     * @param  Model           $user
+     * @param  \Stripe\Invoice $invoice
      * @return void
      */
     public function __construct($user, StripeInvoice $invoice)
@@ -39,7 +39,7 @@ class Invoice
     /**
      * Get a Carbon date for the invoice.
      *
-     * @param  \DateTimeZone|string  $timezone
+     * @param  \DateTimeZone|string $timezone
      * @return \Carbon\Carbon
      */
     public function date($timezone = null)
@@ -195,7 +195,7 @@ class Invoice
     /**
      * Get all of the invoie items by a given type.
      *
-     * @param  string  $type
+     * @param  string $type
      * @return array
      */
     public function invoiceItemsByType($type)
@@ -216,7 +216,7 @@ class Invoice
     /**
      * Format the given amount into a string based on the user's preferences.
      *
-     * @param  int  $amount
+     * @param  int $amount
      * @return string
      */
     protected function formatAmount($amount)
@@ -227,20 +227,42 @@ class Invoice
     /**
      * Get the View instance for the invoice.
      *
-     * @param  array  $data
+     * @param array $data
      */
     public function view(array $data)
     {
-        return View::make('cashier::receipt', array_merge(
-            $data,
-            ['invoice' => $this, 'user' => $this->user]
-        ));
+        $data = array_merge($data, ['invoice' => $this, 'user' => $this->user]);
+        $view = $this->getView();
+        return $view->render('cashier/receipt', $data);
+    }
+
+    /**
+     * Return a {@link \Phalcon\Mvc\View\Simple} instance
+     *
+     * @return \Phalcon\Mvc\View\Simple
+     */
+    public function getView()
+    {
+        $di = FactoryDefault::getDefault();
+        if (!$this->view) {
+            $viewApp = $di->get('view');
+            if (!($viewsDir = $di->get('config')['viewDir'])) {
+                $viewsDir = $viewApp->getViewsDir();
+            }
+            $view = $di->get('\Phalcon\Mvc\View\Simple');
+            $view->setViewsDir($viewsDir);
+            if ($engines = $viewApp->getRegisteredEngines()) {
+                $view->registerEngines($engines);
+            }
+            $this->view = $view;
+        }
+        return $this->view;
     }
 
     /**
      * Capture the invoice as a PDF and return the raw bytes.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return string
      */
     public function pdf(array $data)
@@ -250,7 +272,7 @@ class Invoice
         }
 
         if (file_exists($configPath = base_path().'/vendor/dompdf/dompdf/dompdf_config.inc.php')) {
-            require_once $configPath;
+            include_once $configPath;
         }
 
         $dompdf = new DOMPDF;
@@ -265,18 +287,20 @@ class Invoice
     /**
      * Create an invoice download response.
      *
-     * @param  array   $data
+     * @param array $data
      */
     public function download(array $data)
     {
         $filename = $data['product'].'_'.$this->date()->month.'_'.$this->date()->year.'.pdf';
 
-        return new Response($this->pdf($data), 200, [
+        return new Response(
+            $this->pdf($data), 200, [
             'Content-Description' => 'File Transfer',
             'Content-Disposition' => 'attachment; filename="'.$filename.'"',
             'Content-Transfer-Encoding' => 'binary',
             'Content-Type' => 'application/pdf',
-        ]);
+            ]
+        );
     }
 
     /**
@@ -303,7 +327,7 @@ class Invoice
     /**
      * Dynamically get values from the Stripe invoice.
      *
-     * @param  string  $key
+     * @param  string $key
      * @return mixed
      */
     public function __get($key)
