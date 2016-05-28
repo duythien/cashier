@@ -270,14 +270,14 @@ class Invoice
         if (! defined('DOMPDF_ENABLE_AUTOLOAD')) {
             define('DOMPDF_ENABLE_AUTOLOAD', false);
         }
-
-        if (file_exists($configPath = base_path().'/vendor/dompdf/dompdf/dompdf_config.inc.php')) {
+        $path = $_SERVER['DOCUMENT_ROOT'];
+        if (file_exists($configPath = dirname($path) . '/vendor/dompdf/dompdf/dompdf_config.inc.php')) {
             include_once $configPath;
         }
 
         $dompdf = new DOMPDF;
 
-        $dompdf->load_html($this->view($data)->render());
+        $dompdf->load_html($this->view($data));
 
         $dompdf->render();
 
@@ -293,14 +293,13 @@ class Invoice
     {
         $filename = $data['product'].'_'.$this->date()->month.'_'.$this->date()->year.'.pdf';
 
-        return new Response(
-            $this->pdf($data), 200, [
-            'Content-Description' => 'File Transfer',
-            'Content-Disposition' => 'attachment; filename="'.$filename.'"',
-            'Content-Transfer-Encoding' => 'binary',
-            'Content-Type' => 'application/pdf',
-            ]
-        );
+        $response = new Response();
+        $response->setHeader('Content-Description', 'File Transfer');
+        $response->setHeader('Content-Disposition', 'attachment; filename="'.$filename.'"');
+        $response->setStatusCode(200, 'OK');
+        $response->setContent($this->pdf($data));
+        $response->setContentType('application/pdf');
+        return $response->send();
     }
 
     /**
