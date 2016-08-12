@@ -12,14 +12,13 @@ You will need to set the following details locally and on your Stripe account in
 ### Local
 #### Add some parameter in config.php such as like below
 
+```php
+'stripe' => [
+    'model'      => 'App\Models\Users',
+    'secretKey'  => null,
+    'publishKey' => null
+]
 ```
-    'stripe' => [
-        'model' => 'App\Models\Users',
-        'secretKey' => null,
-        'publishKey' => null
-     ]
-```
-    
 
 ### Stripe
 #### Plans
