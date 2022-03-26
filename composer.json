@@ -17,7 +17,7 @@
         "stripe/stripe-php": "~3.0"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "1.*",
+        "squizlabs/php_codesniffer": "2.*",
         "codeception/codeception": "2.1.2"
     },
     "autoload": {
